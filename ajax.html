@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>pinaluri</title>
+	    <link rel="stylesheet" type="text/css" href="style/reset.css">
+        <link rel="stylesheet" type="text/css" href="style/style.css">
+<style>body{ 
+    background-color: skyblue;
+}</style>
+	</head>
+
+<body>
+
+
+    <section>
+        <header class="header">
+ 
+            <div class="nav">
+            
+                    <nav>
+                        <ul>
+                            <li class="topnav">
+                                <a class="topnav1" href="index.html"> HOME</a>
+                                
+                            </li>
+                            <li class="topnav">
+                                <a class="topnav1" href="#center">OUR SERVICES</a>
+                            </li>
+                            <li class="topnav">
+                                <a class="topnav1" href="#map"> MAP </a>
+                            </li>
+                            <li class="topnav">
+                                <a class="topnav1" href="ajax.html" >AJAX</a>
+                            </li>
+                            
+
+                            <li class="topnav">
+                                <a class="topnav1" href="registration.html" >REGISTRATION</a>
+                            </li>
+                        </ul>
+                    </nav>
+            </div>
+        </header>
+        <div id="request" > </div> 
+
+
+        <script >
+    
+    
+            function getUsers() {
+                function render() {
+                    let response = this.responseText;
+                    let responseData = JSON.parse(response);
+                    console.log(responseData); 
+                    let ul = document.createElement('ul');
+                    responseData.data.forEach(item => {
+                        let li = document.createElement('li');
+                        li.textContent = item.employee_name + " " + item.employee_salary + " " + item.employee_age + " " + item.profile_image;
+                        ul.appendChild(li);
+                    });
+                    document.getElementById('request').appendChild(ul);
+                }
+                
+                let req = new XMLHttpRequest();
+                req.addEventListener('load', render);
+    
+                req.open('GET','http://dummy.restapiexample.com/api/v1/employees');
+                req.send();
+                
+            }
+            getUsers();
+    
+        
+            </script>
+    
+    </body>
+    </html>
+        
